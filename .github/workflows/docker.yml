@@ -1,9 +1,9 @@
-name: Devops Demo CI
+name: Devops Demo CI/CD
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
+      
 
 
 jobs:
@@ -24,3 +24,17 @@ jobs:
         run: |
           sleep 5
           curl http://localhost:5000
+
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secters.SSH_KEY }}
+          script: |
+            cd /opt/devops-demo
+            git pull
+            docker-compose down
+            docker-compose up -d --build
+
+
