@@ -14,16 +14,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name:   Build Docker image
-        run: docker build -t devops-demo ./app
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Run container
-        run: docker run -d -p 5000:5000 devops-demo
-  
-      - name: Test application 
-        run: |
-          sleep 5
-          curl http://localhost:5000
+      - name: Build Docker image
+        run: docker build -t elendumir/devops-demo:1.0 ./app
+        
+      - name: Push Docker image
+        run: docker push elendumir/devops-demo:1.0
 
       - name: Deploy to server
         uses: appleboy/ssh-action@v1.0.3
