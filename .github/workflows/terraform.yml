@@ -1,0 +1,30 @@
+name: Terraform Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  terraform:
+    runs-on: ubuntu latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: terraform
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-direcroty: terraform 
+
+      - name: Terraform Apply
+        run: terraform aplly -auto-approve
+        working-directory: terraform
