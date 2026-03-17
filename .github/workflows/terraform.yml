@@ -8,11 +8,16 @@ on:
 
 jobs:
   terraform:
-    runs-on: ubuntu latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Debug
+        run: |
+          pwd
+          ls -la
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
