@@ -24,9 +24,9 @@ jobs:
         run: docker build -t $IMAGE_NAME ./app
 
       - name: Login to Dockerhub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: PUsh Docker image
+      - name: Push Docker image
         run: docker push $IMAGE_NAME
 
       - name: Terraform Init
