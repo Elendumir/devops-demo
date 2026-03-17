@@ -4,7 +4,8 @@ on:
   push:
     branches:
       - main
-
+env:
+  IMAGE_NAME: elendumir/devops-demo:${{ github.sha }}
 
 jobs:
   terraform:
@@ -14,10 +15,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Debug
-        run: |
-          pwd
-          ls -la
+     # - name: Debug
+     #   run: |
+     #     pwd
+     #     ls -la
+
+      - name: Build Docker image
+        run: docker build -t $IMAGE_NAME ./app
+
+      - name: Login to Dockerhub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: PUsh Docker image
+        run: docker push $IMAGE_NAME
 
       - name: Terraform Init
         run: terraform init
@@ -28,5 +38,5 @@ jobs:
         working-directory: terraform 
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve-var="image_name=${IMAGE_NAME}"
         working-directory: terraform

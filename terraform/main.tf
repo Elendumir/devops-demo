@@ -17,7 +17,7 @@ resource "docker_network" "app_network" {
 #Flask container
 resource "docker_container" "flask_app" {
   name = "flask-app"
-  image = "elendumir/devops-demo:1.0"
+  image = var.image_name
 
   networks_advanced {
     name = docker_network.app_network.name
