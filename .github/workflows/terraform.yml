@@ -34,7 +34,7 @@ jobs:
         working-directory: terraform
 
       - name: Terraform Plan
-        run: terraform plan
+        run: terraform plan -var="image_name=elendumir/devops-demo:1.0"
         working-directory: terraform 
 
       - name: Terraform Apply
