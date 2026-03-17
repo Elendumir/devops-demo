@@ -38,5 +38,5 @@ jobs:
         working-directory: terraform 
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve-var="image_name=${IMAGE_NAME}"
+        run: terraform apply -auto-approve -var="image_name=${IMAGE_NAME}"
         working-directory: terraform
