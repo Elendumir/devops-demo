@@ -1,0 +1,4 @@
+.env
+positions.yaml
+*.log
+alertmanager.local.yml

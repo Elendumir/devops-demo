@@ -1,0 +1,36 @@
+
+
+groups:
+- name: test
+  rules:
+  - alert: ContainerDown
+    expr: container_last_seen{name="nginx-proxy"} < time() - 30
+    for: 10s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Container DOWN"
+
+  - alert: HighCPU
+    expr: rate(container_cpu_usage_seconds_total{name!=""}[1m]) > 0.5
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "High CPU usage"
+
+  - alert: HighMemory
+    expr: container_memory_usage_bytes{name!=""} > 200000000
+    for: 30s
+    labels:
+      severity: warning
+    annotations:
+      summary: "High memory usage"
+
+  - alert: WebsiteDown
+    expr: probe_success == 0
+    for: 10s
+    labels:
+      severity: critical
+    annotations:
+      summary: "Website DOWN"

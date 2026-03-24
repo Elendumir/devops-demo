@@ -2,6 +2,23 @@ version: "3"
 
 
 services:
+
+  flask-app:
+    image: elendumir/devops-demo:latest
+    container_name: flask-app
+    ports:
+      - "5001:8000"
+    restart: always
+
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "8080:80"
+    depends_on:
+      - flask-app
+    restart: always
+
   prometheus:
     image: prom/prometheus
     container_name: prometheus
@@ -9,21 +26,81 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./alert_rules.yml:/etc/prometheus/alert_rules.yml
     depends_on:
       - cadvisor
+    restart: always
+    
 
   grafana:
     image: grafana/grafana
     container_name: grafana
     ports:
       - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
     depends_on:
       - prometheus
+    restart: always
+
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
     container_name: cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg
+
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:ro
+      - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      
+
+    ports:
+      - "8081:8080"
+    restart: always
+
+  alertmanager:
+    image: prom/alertmanager
+    container_name: alertmanager
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./alertmanager.local.yml:/etc/alertmanager/alertmanager.yml
+    restart: always
+
+  blackbox:
+    image: prom/blackbox-exporter
+    container_name: blackbox
+    ports:
+      - "9115:9115"
+    restart: always
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: "-config.file=/etc/loki/local-config.yaml"
+    restart: always
+
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./promtail-config.yml:/etc/promtail/config.yml
+    command: "-config.file=/etc/promtail/config.yml"
+    restart: always
+
+volumes:
+  grafana_data:
+
+
