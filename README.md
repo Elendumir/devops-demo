@@ -37,7 +37,7 @@ LOgs: Containers - Promtail - Loki - Grafana
 git clone https://github.com/Elendumir/devops-demo
 cd monitoring
 docker-compose  up -d
-
+```
 ## SERVICES 
 
 - Grafana: http://localhost:3000
@@ -54,7 +54,7 @@ Alerts are sent to Telegram
 ## LOGGING
 
 Logs are collected using Promtail and stored in Loki.
-Example query: ```logql {container="nginx-proxy"}
+Example query: ```logql {container="nginx-proxy"}```
 
 ## DASHBOARD
 Grafana dashboard :
@@ -78,3 +78,15 @@ Grafana dashboard :
 - Alerting in Telegram
 - Centralized logging with loki
 - Correlation bettwen mentric, logs and alerts
+
+
+## SCREENSHOTS
+### Grafana dashboard
+![Grafana](monitoring/screenshots/grafana.png)
+
+### Loki logs
+![Loki](monitoring/screenshots/loki.png)
+
+### ALert
+![Alerts](monitoring/screenshots/alerts.png)
+
