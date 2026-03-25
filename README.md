@@ -15,7 +15,7 @@ The goal of this project is to simulate a real-world DevOps environment and prac
 
 ## ARCHITECTURE
 
- Flask app — test application
+- Flask app — test application
 - Nginx — reverse proxy
 - Prometheus — metrics collection
 - cAdvisor — container metrics
@@ -27,10 +27,11 @@ The goal of this project is to simulate a real-world DevOps environment and prac
 
 
 ## DATA-FLOW
-
+Metrics:
 Flask/Nginx - cAdvisor - Prometheus - ALertmanager - Telegram
 
-LOgs: Containers - Promtail - Loki - Grafana
+Logs:
+Containers - Promtail - Loki - Grafana
 
 ## HOW TO RUN 
 ``` bash
@@ -44,7 +45,8 @@ docker-compose  up -d
 - Prometheus: http://localhost:9090
 - Alertmanager: http://localhost:9093
 
-Also project has alerts: - ContainerDown
+Also project has alerts:
+			 - ContainerDown
 			 - HighCpu
 			 - HighMemory
 			 - HTTP probe failure
@@ -82,11 +84,17 @@ Grafana dashboard :
 
 ## SCREENSHOTS
 ### Grafana dashboard
+Monitoring CPU, memory usage and container status.
+
 ![Grafana](monitoring/screenshots/grafana.png)
 
 ### Loki logs
+Centralized logs collected from all containers.
+
 ![Loki](monitoring/screenshots/loki.png)
 
-### ALert
+### Alert
+Example of alerts(ContainerDown, HighCPU, etc.)
+
 ![Alerts](monitoring/screenshots/alerts.png)
 
