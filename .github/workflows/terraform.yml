@@ -2,8 +2,8 @@ name: Terraform Deploy
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - "terraform/**"
 env:
   IMAGE_NAME: elendumir/devops-demo:${{ github.sha }}
 

@@ -2,7 +2,8 @@ name: Devops Demo CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    path:
+      - "docker/**"
       
 
 
