@@ -13,10 +13,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Install Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io 
+      - name: Check docker version
+        run: docker --version  
 
       - name: Validate docker-compose
         run: docker compose -f monitoring/docker-compose.yml config
