@@ -27,11 +27,7 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=$PWD/kubeconfig
 
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          script: |
-            kubectl set image deployment/devops-demo devops-demo=${{ secrets.DOCKER_USERNAME }}/devops-demo:latest
+      - name: Deploy (local only)
+        run: |
+          echo "Image pushed successfully"
+          echo "Deploy is done locally via kubectl"
