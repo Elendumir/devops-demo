@@ -23,6 +23,10 @@ scrape_configs:
         replacement: blackbox:9115
       - source_labels: [__param_target]
         target_label: instance
+        
+  - job_name: "node-exporter"
+    static_configs:
+      -   targets: ["node-exporter:9100"]    
 
 alerting:
   alertmanagers:
