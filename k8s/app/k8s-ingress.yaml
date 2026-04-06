@@ -3,15 +3,15 @@ kind: Ingress
 metadata: 
   name: devops-demo-ingress
   annotations:
-    cert-manager.io/cluster-issuer: selfsigned-issuer
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   tls:
     - hosts:
-        - devops-demo.local
+        - www.430sgg.realhost-free.net
       secretName: devops-demo-tls
         
   rules:
-    - host: devops-demo.local
+    - host: www.430sgg.realhost-free.net
       http:
         paths:
           - path: /

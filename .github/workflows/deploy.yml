@@ -34,6 +34,12 @@ jobs:
           username: ${{ secrets.SSH_USER_VPS }}
           key: ${{ secrets.SSH_KEY_VPS }}
           script: |
+                  cd /root/devops-demo
+                  
+                  git pull
+                  
+                  kubectl apply -f k8s/app/
+            
                   kubectl set image deployment/devops-demo devops-demo=${{ secrets.DOCKER_USERNAME }}/devops-demo:latest
-                  kubectl rollout restart deployment/devops-demo
+                
                   kubectl rollout status deployment/devops-demo
