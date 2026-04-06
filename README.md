@@ -43,7 +43,8 @@ Deployed on VPS using k3s
 
 ```bash
 cd k8s/app
-kubectl apply -f .```
+kubectl apply -f .
+```
 
 Includes:
 
@@ -60,7 +61,8 @@ Run locally:
 
 ```bash
 cd monitoring
-docker-compose up -d```
+docker-compose up -d
+```
 
 Services:
 
@@ -83,10 +85,12 @@ Not enabled on VPS due to resource limits
 
 
 #4️⃣ TERRAFORM (Infrastructure)
+
 ```bash
 cd terraform
 terraform init
-terraform apply```
+terraform apply
+```
 
 
 
