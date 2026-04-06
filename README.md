@@ -4,7 +4,7 @@
 
 https://www.430sgg.realhost-free.net
 
----
+
 
 ## PROJECT OVERVIEW
 
@@ -15,13 +15,13 @@ This project demonstrates a full DevOps setup with multiple deployment approache
 - CI/CD (GitHub Actions)
 - Infrastructure as Code (Terraform)
 
----
+
 
 ## ARCHITECTURE (Production)
 
 User → Domain → Ingress → Service → Pod (Flask App)
 
----
+
 
 ## TECH STACK
 
@@ -33,7 +33,7 @@ User → Domain → Ingress → Service → Pod (Flask App)
 - Prometheus + Grafana + Loki
 - Alertmanager (Telegram)
 
----
+
 
 ## DEPLOYMENT OPTIONS
 
@@ -41,7 +41,8 @@ User → Domain → Ingress → Service → Pod (Flask App)
 
 Deployed on VPS using k3s
 
-```bash cd k8s/app
+```bash
+cd k8s/app
 kubectl apply -f .```
 
 Includes:
@@ -51,13 +52,14 @@ Includes:
 - Ingress
 - TLS (cert-manager)
 
----
+
 
 #2️⃣ MONITORING STACK (Docker Compose)
 
 Run locally:
 
-```bash cd monitoring
+```bash
+cd monitoring
 docker-compose up -d```
 
 Services:
@@ -68,7 +70,7 @@ Services:
 - Alertmanager
 - Blackbox exporter
 
----
+
 
 #3️⃣ KUBERNETES MONITORING (Optional)
 
@@ -78,7 +80,7 @@ k8s/monitoring/
 
 Not enabled on VPS due to resource limits
 
----
+
 
 #4️⃣ TERRAFORM (Infrastructure)
 ```bash
@@ -86,7 +88,7 @@ cd terraform
 terraform init
 terraform apply```
 
----
+
 
 ## CI/CD PIPELINE
 
@@ -97,7 +99,7 @@ Pipeline:
 - Deploys to VPS via SSH
 - Performs rolling update
 
----
+
 
 ## PROJECT STRUCTURE
 
@@ -111,13 +113,13 @@ Pipeline:
 ├── terraform/          # Infrastructure
 ├── .github/workflows/  # CI/CD
 
----
+
 
 ## CI/CD FLOW
 
 git push → build → push → SSH → deploy → rollout
 
----
+
 
 ## FEATURES
 
@@ -127,7 +129,7 @@ git push → build → push → SSH → deploy → rollout
 - TLS (HTTPS)
 - Alerts (Telegram)
 
----
+
 
 
 ## SCREENSHOTS
