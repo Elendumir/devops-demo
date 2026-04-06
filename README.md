@@ -39,7 +39,7 @@ User → Domain → Ingress → Service → Pod (Flask App)
 
 #1️⃣ KUBERNETES (Production - VPS)
 
-Deployed on VPS using k3s.
+Deployed on VPS using k3s
 
 ```bash cd k8s/app
 kubectl apply -f .```
