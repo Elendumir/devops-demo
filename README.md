@@ -41,7 +41,7 @@ User → Domain → Ingress → Service → Pod (Flask App)
 
 Deployed on VPS using k3s.
 
-```cd k8s/app
+```bash cd k8s/app
 kubectl apply -f .```
 
 Includes:
@@ -57,7 +57,7 @@ Includes:
 
 Run locally:
 
-```cd monitoring
+```bash cd monitoring
 docker-compose up -d```
 
 Services:
@@ -74,14 +74,14 @@ Services:
 
 Located in:
 
-```k8s/monitoring/```
+k8s/monitoring/
 
 Not enabled on VPS due to resource limits
 
 ---
 
 #4️⃣ TERRAFORM (Infrastructure)
-```
+```bash
 cd terraform
 terraform init
 terraform apply```
@@ -135,6 +135,7 @@ git push → build → push → SSH → deploy → rollout
 App on a VPS Server
 
 ![App](monitoring/screenshots/app.png)
+
 ### Grafana dashboard
 Monitoring CPU, memory usage and container status.
 
