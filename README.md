@@ -1,88 +1,140 @@
-## DecOps Monitoring $ LOgging Stack (Prometheus + Grafana + Loki + Alertmanager)
+## DevOps DEMO PROJECT
 
-## ABOUT THE PROJECT
+## LIVE DEMO
 
-This project is a complete monitoring and logging stack built using Docker Compose.
+https://www.430sgg.realhost-free.net
 
-It includes:
-- Metrics collection (Prometheus + cAdvisor)
-- Visualization (Grafana)
-- Alerting system (Alertmanager + Telegram)
-- Log aggregation (Loki + Promtail)
-- HTTP monitoring (Blackbox exporter)
+---
 
-The goal of this project is to simulate a real-world DevOps environment and practice observability.
+## PROJECT OVERVIEW
 
-## ARCHITECTURE
+This project demonstrates a full DevOps setup with multiple deployment approaches:
 
-- Flask app — test application
-- Nginx — reverse proxy
-- Prometheus — metrics collection
-- cAdvisor — container metrics
-- Alertmanager — alert routing
-- Grafana — dashboards
-- Loki — log storage
-- Promtail — log collector
-- Blackbox exporter — HTTP checks
+- Docker Compose (local monitoring stack)
+- Kubernetes (k3s on VPS)
+- CI/CD (GitHub Actions)
+- Infrastructure as Code (Terraform)
 
+---
 
-## DATA-FLOW
-Metrics:
-Flask/Nginx - cAdvisor - Prometheus - ALertmanager - Telegram
+## ARCHITECTURE (Production)
 
-Logs:
-Containers - Promtail - Loki - Grafana
+User → Domain → Ingress → Service → Pod (Flask App)
 
-## HOW TO RUN 
-``` bash
-git clone https://github.com/Elendumir/devops-demo
-cd monitoring
-docker-compose  up -d
-```
-## SERVICES 
-
-- Grafana: http://localhost:3000
-- Prometheus: http://localhost:9090
-- Alertmanager: http://localhost:9093
-
-Also project has alerts:
-			 - ContainerDown
-			 - HighCpu
-			 - HighMemory
-			 - HTTP probe failure
-
-Alerts are sent to Telegram
-
-## LOGGING
-
-Logs are collected using Promtail and stored in Loki.
-Example query: ```logql {container="nginx-proxy"}```
-
-## DASHBOARD
-Grafana dashboard :
-- CPU
-- Memory
-- Container status
-- HTTP checks
-- Logs (loki) 
+---
 
 ## TECH STACK
+
 - Docker / Docker Compose
+- Kubernetes (k3s)
+- Nginx (Ingress)
+- GitHub Actions (CI/CD)
+- Terraform
+- Prometheus + Grafana + Loki
+- Alertmanager (Telegram)
+
+---
+
+## DEPLOYMENT OPTIONS
+
+#1️⃣ KUBERNETES (Production - VPS)
+
+Deployed on VPS using k3s.
+
+```cd k8s/app
+kubectl apply -f .```
+
+Includes:
+
+- Deployment
+- Service
+- Ingress
+- TLS (cert-manager)
+
+---
+
+#2️⃣ MONITORING STACK (Docker Compose)
+
+Run locally:
+
+```cd monitoring
+docker-compose up -d```
+
+Services:
+
 - Prometheus
 - Grafana
 - Loki
 - Alertmanager
-- Nginx
-- Flask 
+- Blackbox exporter
+
+---
+
+#3️⃣ KUBERNETES MONITORING (Optional)
+
+Located in:
+
+```k8s/monitoring/```
+
+Not enabled on VPS due to resource limits
+
+---
+
+#4️⃣ TERRAFORM (Infrastructure)
+```
+cd terraform
+terraform init
+terraform apply```
+
+---
+
+## CI/CD PIPELINE
+
+Pipeline:
+
+- Builds Docker image
+- Pushes to DockerHub
+- Deploys to VPS via SSH
+- Performs rolling update
+
+---
+
+## PROJECT STRUCTURE
+
+.
+├── app/                # Flask application
+├── k8s/
+│   ├── app/            # Kubernetes manifests (app)
+│   ├── monitoring/     # Kubernetes monitoring stack
+├── monitoring/         # Docker Compose monitoring
+├── nginx/              # Nginx config
+├── terraform/          # Infrastructure
+├── .github/workflows/  # CI/CD
+
+---
+
+## CI/CD FLOW
+
+git push → build → push → SSH → deploy → rollout
+
+---
 
 ## FEATURES
-- Real-time monitoring of containers
-- Alerting in Telegram
-- Centralized logging with loki
-- Correlation bettwen mentric, logs and alerts
+
+- Kubernetes deployment
+- CI/CD automation
+- Monitoring & logging
+- TLS (HTTPS)
+- Alerts (Telegram)
+
+---
 
 
 ## SCREENSHOTS
+### App
+App on a VPS Server
+
+![App](monitoring/screenshots/app.png)
 ### Grafana dashboard
 Monitoring CPU, memory usage and container status.
 
@@ -98,3 +150,6 @@ Example of alerts(ContainerDown, HighCPU, etc.)
 
 ![Alerts](monitoring/screenshots/alerts.png)
 
+## NOTES
+- Monitoring in Kubernetes disabled due to VPS limits
+- Production setup uses minimal resources
