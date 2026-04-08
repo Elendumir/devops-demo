@@ -1,5 +1,6 @@
 ## DevOps DEMO PROJECT
 
+Full-stack DevOps project with Kubernetes deployment, CI/CD  pipeline and monitoring stack 
 ## LIVE DEMO
 
 https://www.430sgg.realhost-free.net
@@ -8,20 +9,28 @@ https://www.430sgg.realhost-free.net
 
 ## PROJECT OVERVIEW
 
-This project demonstrates a full DevOps setup with multiple deployment approaches:
+This project demonstrates a real-world DevOps  workflow:
 
-- Docker Compose (local monitoring stack)
-- Kubernetes (k3s on VPS)
-- CI/CD (GitHub Actions)
-- Infrastructure as Code (Terraform)
+- Containerized application (Flask + Nginx)
+- Kubernetes deployment  (k3s on VPS)
+- CI/CD pipeline using GitHub Actions
+- Infrastructure provisioning with Terraform
+- Monitoring stack (Prometheus + Grafana + Loki) 
 
-
+The goal is to simulate a production-like environment
 
 ## ARCHITECTURE (Production)
 
-User → Domain → Ingress → Service → Pod (Flask App)
-
-
+- **Frontend / Backend**: Flask app
+- **Reverse Proxy**: Nginx
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes (k3s)
+- **CI/CD**: GitHUb Actions
+- **Monitoring**:
+  - Prometheus
+  - Grafana
+  - Loki
+  - Alertmanager
 
 ## TECH STACK
 
@@ -32,7 +41,6 @@ User → Domain → Ingress → Service → Pod (Flask App)
 - Terraform
 - Prometheus + Grafana + Loki
 - Alertmanager (Telegram)
-
 
 
 ## DEPLOYMENT OPTIONS
@@ -73,7 +81,6 @@ Services:
 - Blackbox exporter
 
 
-
 #3️⃣ KUBERNETES MONITORING (Optional)
 
 Located in:
@@ -92,19 +99,6 @@ terraform init
 terraform apply
 ```
 
-
-
-## CI/CD PIPELINE
-
-Pipeline:
-
-- Builds Docker image
-- Pushes to DockerHub
-- Deploys to VPS via SSH
-- Performs rolling update
-
-
-
 ## PROJECT STRUCTURE
 
 .
@@ -119,11 +113,19 @@ Pipeline:
 
 
 
-## CI/CD FLOW
+## CI/CD PIPELINE
 
-git push → build → push → SSH → deploy → rollout
+CI/CD is implemented using GitHub Actions
 
+##WORKFLOW:
 
+1. Developer pushescode to GitHub
+2. GitHub Actions triggers pipeline
+3. Pipeline connects to VPS via SSH
+4. Kubernetes manifestst are applied
+5. Deployment is restarted 
+
+ 
 
 ## FEATURES
 
