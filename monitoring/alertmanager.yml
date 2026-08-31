@@ -10,8 +10,8 @@ route:
 receivers:
 - name: "telegram"
   telegram_configs:
-  - bot_token: "8575941277:AAE3ZIup_3xgmJkzgEk2UG6S6aF94sIowvk"
-    chat_id: 338396081
+  - bot_token: "-"
+    chat_id: -
     send_resolved: true
     message: |
           {{ if eq .Status "firing" }}
