@@ -31,15 +31,7 @@ https://www.430sgg.realhost-free.net
   
 ## PROJECT STRUCTURE
 
-.
-├── app/                # Flask application
-├── k8s/
-│   ├── app/            # Kubernetes manifests (app)
-│   ├── monitoring/     # Kubernetes monitoring stack
-├── monitoring/         # Docker Compose monitoring
-├── nginx/              # Nginx config
-├── terraform/          # Infrastructure
-├── .github/workflows/  # CI/CD
+![Structure](monitoring/sreenshots/str.png)
 
 
 ## DEPLOYMENT STEPS
