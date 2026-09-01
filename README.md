@@ -31,7 +31,7 @@ https://www.430sgg.realhost-free.net
   
 ## PROJECT STRUCTURE
 
-![Structure](monitoring/sreenshots/str.png)
+![Structure](monitoring/screenshots/str.png)
 
 
 ## DEPLOYMENT STEPS
