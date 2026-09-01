@@ -1,14 +1,5 @@
 ## DevOps DEMO PROJECT
 
-Full-stack DevOps project with Kubernetes deployment, CI/CD  pipeline and monitoring stack 
-## LIVE DEMO
-
-https://www.430sgg.realhost-free.net
-
-
-
-## PROJECT OVERVIEW
-
 This project demonstrates a real-world DevOps  workflow:
 
 - Containerized application (Flask + Nginx)
@@ -16,23 +7,18 @@ This project demonstrates a real-world DevOps  workflow:
 - CI/CD pipeline using GitHub Actions
 - Infrastructure provisioning with Terraform
 - Monitoring stack (Prometheus + Grafana + Loki) 
-
 The goal is to simulate a production-like environment
+
+## LIVE DEMO
+
+https://www.430sgg.realhost-free.net
 
 ## ARCHITECTURE (Production)
 
-- **Frontend / Backend**: Flask app
-- **Reverse Proxy**: Nginx
-- **Containerization**: Docker
-- **Orchestration**: Kubernetes (k3s)
-- **CI/CD**: GitHUb Actions
-- **Monitoring**:
-  - Prometheus
-  - Grafana
-  - Loki
-  - Alertmanager
+![Architecture](monitoring/screenshots/ar.png)
 
-## TECH STACK
+
+## TECHNOLOGY STACK 
 
 - Docker / Docker Compose
 - Kubernetes (k3s)
@@ -41,9 +27,21 @@ The goal is to simulate a production-like environment
 - Terraform
 - Prometheus + Grafana + Loki
 - Alertmanager (Telegram)
+  
+## PROJECT STRUCTURE
+
+.
+├── app/                # Flask application
+├── k8s/
+│   ├── app/            # Kubernetes manifests (app)
+│   ├── monitoring/     # Kubernetes monitoring stack
+├── monitoring/         # Docker Compose monitoring
+├── nginx/              # Nginx config
+├── terraform/          # Infrastructure
+├── .github/workflows/  # CI/CD
 
 
-## DEPLOYMENT OPTIONS
+## DEPLOYMENT STEPS
 
 #1️⃣ KUBERNETES (Production - VPS)
 
@@ -98,19 +96,6 @@ cd terraform
 terraform init
 terraform apply
 ```
-
-## PROJECT STRUCTURE
-
-.
-├── app/                # Flask application
-├── k8s/
-│   ├── app/            # Kubernetes manifests (app)
-│   ├── monitoring/     # Kubernetes monitoring stack
-├── monitoring/         # Docker Compose monitoring
-├── nginx/              # Nginx config
-├── terraform/          # Infrastructure
-├── .github/workflows/  # CI/CD
-
 
 
 ## CI/CD PIPELINE
