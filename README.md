@@ -6,7 +6,8 @@ This project demonstrates a real-world DevOps  workflow:
 - Kubernetes deployment  (k3s on VPS)
 - CI/CD pipeline using GitHub Actions
 - Infrastructure provisioning with Terraform
-- Monitoring stack (Prometheus + Grafana + Loki) 
+- Monitoring stack (Prometheus + Grafana + Loki)
+
 The goal is to simulate a production-like environment
 
 ## LIVE DEMO
